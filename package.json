@@ -20,6 +20,9 @@
     "ejs": "~2.5.5",
     "express": "~4.14.1",
     "morgan": "~1.7.0",
+    "ng-redux": "^3.4.0-beta.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
     "serve-favicon": "~2.3.2"
   },
   "devDependencies": {
@@ -38,6 +41,7 @@
     "ng-annotate-loader": "^0.2.0",
     "node-sass": "^4.5.1",
     "raw-loader": "^0.5.1",
+    "redux-logger": "^3.0.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.0",
     "webpack": "^2.3.2",

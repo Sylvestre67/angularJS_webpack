@@ -7,13 +7,13 @@ import { HomeComponent } from './home.component';
 
 export const homeModule =
 	angular.module('home',[ uirouter ])
-		.component('home',HomeComponent)
+		.component('ossHome',HomeComponent)
 		.config(($stateProvider) => {
 			'ngInject';
 			$stateProvider
 				.state('home',{
-					url:'/home',
-					component:'home'
+					url:'/',
+					component:'ossHome'
 			})
 		})
 		.name;
