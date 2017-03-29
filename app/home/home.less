@@ -1,3 +1,13 @@
-.red{
-	color:orange;
+@import 'mixins.less';
+@import 'custom_variables.less';
+
+.clocks{
+	& .col{
+		text-align:center;
+		& p{
+			padding:.5em;
+			color:white;
+			background-color:@marina;
+		}
+	}
 }

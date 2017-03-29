@@ -1,24 +1,110 @@
+const path = require('path');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractCss = new ExtractTextPlugin({
+	filename: '[contenthash].css',
+});
 
 module.exports = {
-	context: __dirname + '/app',
+	context: path.resolve(__dirname, 'app'),
 	entry: './oss.module.js',
 	output:{
 		path: __dirname + '/dist',
 		filename: 'bundle.js'
 	},
-	module:{
-		loaders: [
-			{test: /\.js$/, loader: 'ng-annotate-loader!babel-loader', exclude: /node_modules/},
-			{test: /\.css$/, loaders:'style-loader!css-loader'},
-			{test: /\.less$/, loaders:'style-loader!css-loader!less-loader'},
-			{test: /\.scss$/, loaders:'style-loader!css-loader!sass-loader'},
-			{test: /\.html$/, loader: 'raw-loader'}
+	resolve:{
+		modules:[
+			'node_modules'
 		]
+	},
+	module:{
+		rules:[
+			{
+				test: /\.js$/,
+				use: ['ng-annotate-loader','babel-loader'],
+				exclude: /node_modules/
+			},
+
+			{
+				test: /\.css$/,
+				use: extractCss.extract({
+					fallback: 'style-loader',
+					use: {
+						loader: 'css-loader',
+						options:{
+							sourceMap:true,
+							minimize:true,
+						}
+					},
+				})
+			},
+
+			{
+				test: /\.scss$/,
+				use: extractCss.extract({
+					fallback: 'style-loader',
+					use: [
+						{
+							loader: 'css-loader',
+							options:{
+								minimize:true,
+							}
+						},
+						{
+							loader: 'sass-loader',
+						}
+					],
+				})
+			},
+
+			{
+				test: /\.less$/,
+				use: extractCss.extract({
+						fallback: 'style-loader',
+						use: [
+							{
+								loader: 'css-loader',
+								options:{
+									minimize:true,
+									sourceMap:true
+								}
+							},
+							{
+								loader: 'less-loader',
+								options:{
+									sourceMap: true,
+									paths: [
+										path.resolve(__dirname, 'app/assets')
+									]
+								}
+							}
+						],
+					}),
+			},
+
+			{
+				test: /\.html$/, use: ['raw-loader']
+			},
+
+			{
+				test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+				loader: 'url-loader',
+				options: {
+					limit: 10000
+				}
+			}
+		],
+	},
+	watchOptions: {
+		aggregateTimeout: 300,
+		poll: 1000,
+		ignored: /node_modules/
 	},
 	plugins: [
 		new LiveReloadPlugin({}),
+		extractCss,
 		new HtmlWebpackPlugin({
 			title:'Webpack AngularJs',
 			filename: '../dist/index.html',

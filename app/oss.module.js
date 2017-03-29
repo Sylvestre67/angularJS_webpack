@@ -6,8 +6,8 @@ import ngSanitize from 'angular-sanitize';
 
 import uirouter from 'angular-ui-router';
 
-import  '../node_modules/bootstrap/scss/bootstrap-grid.scss';
-import  '../node_modules/angular-material/angular-material.css';
+import  'bootstrap/scss/bootstrap-grid.scss';
+import  'angular-material/angular-material.css';
 
 import { ossComponent } from './oss.component.js';
 

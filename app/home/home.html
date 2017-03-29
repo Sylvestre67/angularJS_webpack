@@ -1,7 +1,17 @@
-<p class="red">
-	{{ vm.greetings }}
-</p>
-
-<p>
-	Redux: {{ vm.message }}
-</p>
+<div class="row clocks">
+	<div class="col">
+		<p>
+			Paris: {{ vm.message | date : 'HH:mm:ss' : '+0000'  }}
+		</p>
+	</div>
+	<div class="col">
+		<p>
+			New York: {{ vm.message | date : 'HH:mm:ss' : 'EST' }}
+		</p>
+	</div>
+	<div class="col">
+		<p>
+			San Fransisco: {{ vm.message | date : 'HH:mm:ss' : 'PST' }}
+		</p>
+	</div>
+</div>
