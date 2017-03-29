@@ -16,6 +16,7 @@ module.exports = {
 	},
 	resolve:{
 		modules:[
+			path.resolve(__dirname, 'app/utils'), // in order to resolve from the root as well.
 			'node_modules'
 		]
 	},
@@ -26,7 +27,6 @@ module.exports = {
 				use: ['ng-annotate-loader','babel-loader'],
 				exclude: /node_modules/
 			},
-
 			{
 				test: /\.css$/,
 				use: extractCss.extract({
@@ -40,7 +40,6 @@ module.exports = {
 					},
 				})
 			},
-
 			{
 				test: /\.scss$/,
 				use: extractCss.extract({
@@ -58,7 +57,6 @@ module.exports = {
 					],
 				})
 			},
-
 			{
 				test: /\.less$/,
 				use: extractCss.extract({
@@ -83,11 +81,9 @@ module.exports = {
 						],
 					}),
 			},
-
 			{
 				test: /\.html$/, use: ['raw-loader']
 			},
-
 			{
 				test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
 				loader: 'url-loader',

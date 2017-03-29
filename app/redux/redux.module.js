@@ -13,10 +13,9 @@ const logger = createLogger({
 });
 import ossReducers from './reducers';
 
-export const ossRedux = angular.module('ossRedux',[ngRedux])
+export const ossRedux = angular.module('ossRedux',[ ngRedux ])
 	.config(($ngReduxProvider) => {
 		'ngInject';
-		console.log('---> Redux Store');
 		$ngReduxProvider.createStoreWith(ossReducers, [logger]);
 	})
 	.name;

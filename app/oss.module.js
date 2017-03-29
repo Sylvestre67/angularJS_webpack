@@ -14,7 +14,9 @@ import { ossComponent } from './oss.component.js';
 import { ossRedux } from './redux/redux.module';
 
 import { layoutModule } from './layout/layout.module';
+import { chartsModule } from './charts/charts.module'
 import { homeModule } from './home/home.module';
+
 
 export const oss = angular.module('oss',[
 	ngMaterial,
@@ -30,6 +32,8 @@ export const oss = angular.module('oss',[
 
 	/* oss modules */
 	layoutModule,
+	//'chart',
+	chartsModule,
 	homeModule
 ])
 	.component('oss', ossComponent)
@@ -37,5 +41,4 @@ export const oss = angular.module('oss',[
 		'ngInject';
 		$urlRouterProvider.otherwise('/');
 	})
-
 	.name;

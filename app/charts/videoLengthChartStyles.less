@@ -1,0 +1,25 @@
+@import (reference) 'custom_variables';
+@import (reference) 'mixins';
+
+.video-length-chart{
+	& .axis{
+		& path, line{
+			fill:none;
+			stroke:darken(@gray-lighter,10);
+		}
+		& text{
+			font-size:.9em !important;
+		}
+		& .tick{
+			& text{
+				stroke:none;
+			}
+		}
+		&.x{
+			& path{
+				fill:none;
+				stroke:none;
+			}
+		}
+	}
+}

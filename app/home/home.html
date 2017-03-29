@@ -1,4 +1,7 @@
 <div class="row clocks">
+	<h4 class="md-subheader">
+		Data Binding
+	</h4>
 	<div class="col">
 		<p>
 			Paris: {{ vm.message | date : 'HH:mm:ss' : '+0000'  }}
@@ -13,5 +16,15 @@
 		<p>
 			San Fransisco: {{ vm.message | date : 'HH:mm:ss' : 'PST' }}
 		</p>
+	</div>
+</div>
+
+<div class="row">
+	<h4 class="md-subheader">
+		Directives
+	</h4>
+	<div class="col">
+		<video-length-chart
+				dataset="vm.video_length"></video-length-chart>
 	</div>
 </div>
