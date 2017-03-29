@@ -1,4 +1,4 @@
-import { requestData } from '../redux/actions';
+import actions from '../redux/actions';
 
 export const HomeComponent = {
 
@@ -9,7 +9,7 @@ export const HomeComponent = {
 			this._$ngRedux = $ngRedux;
 			this._$timeout = $timeout;
 
-			this.unsubscribe = $ngRedux.connect(this.mapStateToThis, requestData)(this);
+			this.unsubscribe = $ngRedux.connect(this.mapStateToThis, actions)(this);
 			this._ossHomeService = ossHomeService;
 		}
 
@@ -17,33 +17,31 @@ export const HomeComponent = {
 			let vm = this;
 			vm.greetings = 'Home Module!';
 
-			this._ossHomeService.get({id:1},(response) => {
-				console.log(response);
-				vm.video_length = response;
-			},(error) => {
-				console.log(error);
-			});
+			vm._$ngRedux.dispatch( actions.requestMoment(new Date()) );
 
-
-			vm._$ngRedux.dispatch( requestData(new Date()) );
+			this._ossHomeService.get({id:1});
 
 			setInterval(function(){
-				//vm._$ngRedux.dispatch( requestData(new Date()) );
+				vm._$ngRedux.dispatch( actions.requestMoment(new Date()) );
 			},1000);
+
+			setInterval(function(){
+				vm._ossHomeService.get({id:1});
+			},3000);
 
 			console.log(vm);
 		}
 
 		$onDestroy(){
-			this.unsubscribe;
+			this.unsubscribe();
 		}
 
 		mapStateToThis(state) {
 			return {
-				message: state.data.message
+				moment: state.data.moment,
+				video_length: state.data.data
 			}
 		}
-
 	},
 	controllerAs: 'vm',
 	template: require('./home.html')

@@ -16,6 +16,7 @@ module.exports = {
 	},
 	resolve:{
 		modules:[
+			path.resolve(__dirname, 'app'),
 			path.resolve(__dirname, 'app/utils'), // in order to resolve from the root as well.
 			'node_modules'
 		]

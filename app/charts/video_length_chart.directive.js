@@ -23,7 +23,7 @@ export const videoLengthChart = ($timeout, $window) => {
 		var drawOnResize;
 
 		scope.$watch('dataset', function (dataset, old_dataaset) {
-			if (dataset !== undefined) {
+			if (dataset !== undefined && dataset.length > 0) {
 				$timeout(function () {
 					drawVideoLengthChart(config, element, attrs, scope.dataset);
 					// Resizing listening event.
@@ -54,7 +54,7 @@ export const videoLengthChart = ($timeout, $window) => {
 
 		var y_domain = data.map(function(k,v){ return data[v].category; });
 
-		var svg,axis_x,x_axis_label,axis_y,bar;
+		var svg,axis_x,x_axis_label,axis_y,bars,bars_rect;
 
 		var x = d3.scale.linear()
 			.range([0, width])
@@ -73,41 +73,49 @@ export const videoLengthChart = ($timeout, $window) => {
 			.scale(y)
 			.orient("left");
 
-		// if svg already exists --> clean up the mess.
-		d3.select(element[0]).select('svg').remove();
+		(d3.select(element[0]).select('svg')[0][0] !== null)
+			? svg = d3.select(element[0]).select('svg')
+			: drawSVG();
 
-		svg = d3.select(element[0])
-			.append("svg:svg")
-			.attr("class", "video-length-chart")
-			.attr("width", full_width)
-			.attr("height", full_height)
-			.append("svg:g")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		function drawSVG(){
+			svg = d3.select(element[0])
+				.append("svg:svg")
+				.attr("class", "video-length-chart")
+				.attr("width", full_width)
+				.attr("height", full_height)
+				.append("svg:g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		axis_x = svg.append("g")
-			.attr("class","axis x")
-			.attr("transform","translate(0," + 0 + ")")
-			.call(x_axis);
+			axis_x = svg.append("g")
+				.attr("class","axis x")
+				.attr("transform","translate(0," + 0 + ")");
 
-		x_axis_label = axis_x.append("g")
-			.attr("class","label")
-			.style("text-anchor","end")
-			.attr("transform","translate(" + -10 + "," + (height + 16) + ")")
-			.append("text").text("Seconds");
+			x_axis_label = axis_x.append("g")
+				.attr("class","label")
+				.style("text-anchor","end")
+				.attr("transform","translate(" + -10 + "," + (height + 16) + ")")
+				.append("text").text("Seconds");
 
-		axis_y = svg.append("g")
-			.attr("class","axis y")
-			.call(y_axis);
+			axis_y = svg.append("g")
+				.attr("class","axis y");
+		}
 
-		bar = svg.selectAll(".bar").data(data);
+		bars = svg.selectAll(".bar").data(data);
 
-		bar.enter().append("g")
+		bars.enter().append("rect")
 			.attr("class","bar")
 			.attr("transform",function(d,i){ return "translate(" + 0 + "," + y(d.category) + ")"});
 
-		bar.append("rect")
-			.style("fill",function(d,i){ return colors[i]; })
-			.attr("height",y.rangeBand()+"px")
-			.attr("width",function(d,y){ return x(d.value); });
+		bars.style("fill",function(d,i){ return colors[i]; })
+			.attr("height",y.rangeBand()+"px");
+
+		bars.exit().remove();
+
+		bars.transition().duration(300)
+				.attr("width",function(d,y){ return x(d.value); });
+
+		svg.select('.x.axis').transition().duration(300).call(x_axis);
+		svg.select('.y.axis').transition().duration(300).call(y_axis);
+
 	}
 }

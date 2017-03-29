@@ -4,17 +4,17 @@
 	</h4>
 	<div class="col">
 		<p>
-			Paris: {{ vm.message | date : 'HH:mm:ss' : '+0000'  }}
+			Paris: {{ vm.moment | date : 'HH:mm:ss' : '+0000'  }}
 		</p>
 	</div>
 	<div class="col">
 		<p>
-			New York: {{ vm.message | date : 'HH:mm:ss' : 'EST' }}
+			New York: {{ vm.moment | date : 'HH:mm:ss' : 'EST' }}
 		</p>
 	</div>
 	<div class="col">
 		<p>
-			San Fransisco: {{ vm.message | date : 'HH:mm:ss' : 'PST' }}
+			San Fransisco: {{ vm.moment | date : 'HH:mm:ss' : 'PST' }}
 		</p>
 	</div>
 </div>
