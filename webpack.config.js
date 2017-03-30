@@ -3,11 +3,12 @@ const webpack = require('webpack');
 
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const  CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const extractCss = new ExtractTextPlugin({
-	filename: '[contenthash].css',
-});
+const extractCss = (process.env.NODE_ENV === 'prod')
+	? new ExtractTextPlugin({ filename: '[contenthash].css' })
+	: new ExtractTextPlugin({ filename: 'styles.css' });
 
 module.exports = {
 	context: path.resolve(__dirname, 'app'),
@@ -97,8 +98,8 @@ module.exports = {
 		],
 	},
 	watchOptions: {
-		aggregateTimeout: 300,
-		poll: 1000,
+		//aggregateTimeout: 300,
+		//poll: 1000,
 		ignored: /node_modules/
 	},
 	plugins: [
@@ -112,6 +113,12 @@ module.exports = {
 		}),
 		new webpack.DefinePlugin({
 			ON_TEST: process.env.NODE_ENV === 'test'
-		})
+		}),
+		new CopyWebpackPlugin([
+			// Copy directory contents to {output}/to/directory/
+			{ from: 'assets/icons', to: 'icons' },
+			{ from: 'assets/img',   to: 'img' },
+			{ from: 'assets/mocks', to: 'mocks' },
+		], {})
 	]
 };

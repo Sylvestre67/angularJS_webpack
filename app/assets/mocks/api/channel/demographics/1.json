@@ -1,0 +1,92 @@
+[{
+"age_group": "13-17",
+"data": [
+{
+"gender": "male",
+"value": 4.45
+},
+{
+"gender": "female",
+"value": 2.56
+}
+]
+},
+{
+"age_group": "18-24",
+"data": [
+{
+"gender": "male",
+"value": 25.38
+},
+{
+"gender": "female",
+"value": 7.41
+}
+]
+},
+{
+"age_group": "25-34",
+"data": [
+{
+"gender": "male",
+"value": 25.39
+},
+{
+"gender": "female",
+"value": 5.5
+}
+]
+},
+{
+"age_group": "35-44",
+"data": [
+{
+"gender": "male",
+"value": 11.41
+},
+{
+"gender": "female",
+"value": 3.14
+}
+]
+},
+{
+"age_group": "45-54",
+"data": [
+{
+"gender": "male",
+"value": 4.19
+},
+{
+"gender": "female",
+"value": 1.36
+}
+]
+},
+{
+"age_group": "55-64",
+"data": [
+{
+"gender": "male",
+"value": 1.05
+},
+{
+"gender": "female",
+"value": 0.57
+}
+]
+},
+{
+"age_group": "65+",
+"data": [
+{
+"gender": "male",
+"value": 1.36
+},
+{
+"gender": "female",
+"value": 0.3
+}
+]
+}
+]
