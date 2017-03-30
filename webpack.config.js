@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const  CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const extractCss = (process.env.NODE_ENV === 'prod')
+const extractCss = (process.env.NODE_ENV === 'production')
 	? new ExtractTextPlugin({ filename: '[contenthash].css' })
 	: new ExtractTextPlugin({ filename: 'styles.css' });
 

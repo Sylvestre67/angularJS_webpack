@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "test": "NODE_ENV=test karma start karma.config.js",
-    "start": "node bin/www"
+    "start": "node bin/www",
+    "build": "NODE_ENV=production webpack"
   },
   "dependencies": {
     "angular": "^1.6.3",
