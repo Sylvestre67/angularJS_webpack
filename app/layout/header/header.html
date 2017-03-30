@@ -1,1 +1,56 @@
-<p>&nbsp</p>
+<div class="main-nav-component"
+     ng-class="vm.activeModule">
+
+	<div class="money-ball" ui-sref="home">
+		<md-icon md-svg-icon="oss:money_ball" aria-label="OpenSlate"></md-icon>
+	</div>
+
+	<div class="l-col">
+
+		<div class="nav-planning" ui-sref="planning">
+			<i class="fi-os-icons fi-four-squares-03"></i>
+			<span>Planning</span>
+		</div>
+
+		<div class="nav-analytics" ui-sref="analytics">
+			<i class="fi-os-icons fi-file-chart-text"></i>
+			<span>Analytics</span>
+		</div>
+
+		<div class="nav-discovery" ui-sref="discovery">
+			<i class="fi-os-icons fi-eye-02"></i>
+			<span>Discovery</span>
+		</div>
+
+		<div class="nav-trends">
+			<i class="fi-os-icons fi-two-arrows-diagonal-up-down-02"></i>
+			<span>Trends</span>
+		</div>
+
+	</div>
+
+	<div class="r-col">
+		<md-menu flex md-position-mode="target-right target" class="account-menu">
+			<div layout="row" layout-align="end center">
+				<span id="t-userId">[[ vm.user.first_name ]] [[ vm.user.last_name ]]</span>
+				<md-button class="md-icon-button" aria-label="account menu"
+				           ng-click="$mdOpenMenu($event)">
+					<md-icon
+							md-menu-origin
+							md-menu-align-target>expand_more</md-icon>
+				</md-button>
+			</div>
+			<md-menu-content width="4">
+				<md-menu-item layout="row" layout-align="end center" class="logout-link">
+					<a href="/logout/" style="text-align:right;">
+						<span class="md-subhead">Logout</span>
+						<md-button class="md-icon-button md-mini" aria-label="account logout">
+							<md-icon md-menu-origin
+							         md-menu-align-target>power_settings_new</md-icon>
+						</md-button>
+					</a>
+				</md-menu-item>
+			</md-menu-content>
+		</md-menu>
+	</div>
+</div>

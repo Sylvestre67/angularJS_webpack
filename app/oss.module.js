@@ -19,6 +19,7 @@ import { ossComponent } from './oss.component.js';
 
 import { ossRedux } from './redux/redux.module';
 
+import { IconModule } from './icons/icons.module';
 import { layoutModule } from './layout/layout.module';
 import { chartsModule } from './charts/charts.module'
 import { homeModule } from './home/home.module';
@@ -38,6 +39,7 @@ export const oss = angular.module('oss',[
 	/* oss modules */
 	layoutModule,
 	chartsModule,
+	IconModule,
 	homeModule
 ])
 	.component('oss', ossComponent)

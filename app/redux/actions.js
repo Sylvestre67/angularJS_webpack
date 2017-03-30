@@ -1,5 +1,3 @@
-import ossHomeService from 'home/home.service';
-
 /**** action type ****/
 export const REQUEST_MOMENT = 'REQUEST_MOMENT';
 export const REQUEST_DATA = 'REQUEST_DATA';

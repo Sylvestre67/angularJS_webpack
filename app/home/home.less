@@ -11,3 +11,23 @@
 		}
 	}
 }
+
+&.icons{
+	& p{
+		& md-icon{
+			&:nth-child(odd){
+				color:@marina !important;
+				& svg{
+					& path{
+						fill:@marina;
+					}
+				}
+			}
+			& svg{
+				& path{
+					fill:@base-font-color;
+				}
+			}
+		}
+	}
+}

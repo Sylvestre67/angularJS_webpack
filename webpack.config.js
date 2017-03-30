@@ -105,7 +105,7 @@ module.exports = {
 		new LiveReloadPlugin({}),
 		extractCss,
 		new HtmlWebpackPlugin({
-			title:'Webpack AngularJs',
+			title:'Webpack AngularJs Redux',
 			filename: '../dist/index.html',
 			template: './index.ejs',
 			favicon: './favicon.ico'
