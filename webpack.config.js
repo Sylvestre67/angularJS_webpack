@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -107,6 +109,9 @@ module.exports = {
 			filename: '../dist/index.html',
 			template: './index.ejs',
 			favicon: './favicon.ico'
+		}),
+		new webpack.DefinePlugin({
+			ON_TEST: process.env.NODE_ENV === 'test'
 		})
 	]
 };

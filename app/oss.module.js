@@ -1,8 +1,14 @@
 import angular    from 'angular';
+
 import ngMaterial from 'angular-material';
 import ngAnimate  from 'angular-animate';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
+
+/* Test specific imports */
+(ON_TEST !== undefined)
+	? require('angular-mocks/angular-mocks')
+	: false;
 
 import uirouter from 'angular-ui-router';
 
@@ -16,7 +22,6 @@ import { ossRedux } from './redux/redux.module';
 import { layoutModule } from './layout/layout.module';
 import { chartsModule } from './charts/charts.module'
 import { homeModule } from './home/home.module';
-
 
 export const oss = angular.module('oss',[
 	ngMaterial,
@@ -32,7 +37,6 @@ export const oss = angular.module('oss',[
 
 	/* oss modules */
 	layoutModule,
-	//'chart',
 	chartsModule,
 	homeModule
 ])

@@ -20,5 +20,6 @@ export const ossHomeService = ($resource,$ngRedux) => {
 					return data
 				}
 			}
-		})
+		}
+	)
 };
